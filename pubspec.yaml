@@ -1,0 +1,28 @@
+name: announce_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  masterfabric_core: ^0.0.13
+  osmea_components:
+    git:
+      url: https://github.com/masterfabric-mobile/osmea.git
+      ref: dev
+      path: packages/components
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
