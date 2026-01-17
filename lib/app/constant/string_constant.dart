@@ -18,13 +18,25 @@ final appStrings = {
     'filter': 'Filter',
     'sort': 'Sort',
     'refresh': 'Refresh',
+    'skip': 'Skip',
+    'getStarted': 'Get Started',
   },
   'splash': {
     'appName': 'ACCOUNCE APP',
     'appSlogan': 'Fast and Easy Announcement Management',
     'loading': 'Loading app ...',
   },
-  'onboarding': {'onbarding_title_one': 'Welcome to the App'},
+  'onboarding': {
+    'title_one': 'Welcome App',
+    'description_one':
+        'Welcome to ACCOUNCE APP. Manage your announcements easily.',
+    'title_two': 'Stay Updated',
+    'description_two':
+        'Get instant notifications about important announcements.',
+    'title_three': 'Get Started',
+    'description_three':
+        'Start managing your announcements now and stay organized.',
+  },
   'announcement': {
     'announcement': 'Announcement',
     'announcements': 'Announcements',
@@ -56,6 +68,12 @@ extension AppStringsExtension on Map<String, dynamic> {
   /// Get announcement strings
   Map<String, String> get announcement =>
       (this['announcement'] as Map<String, dynamic>).map(
+        (key, value) => MapEntry(key, value as String),
+      );
+
+  /// Get onboarding strings
+  Map<String, String> get onboarding =>
+      (this['onboarding'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(key, value as String),
       );
 }
