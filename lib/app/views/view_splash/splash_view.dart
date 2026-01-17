@@ -26,7 +26,6 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     final bgColor = AppColors.getBackgroundColor(context);
-    final primaryTextColor = AppColors.getTextPrimaryColor(context);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -36,15 +35,15 @@ class _SplashViewState extends State<SplashView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SplashLogoWidget(),
+                const SplashLogoWidget(),
                 AppSizedBox.height24,
-                SplashTitleWidget(primaryTextColor),
+                const SplashTitleWidget(),
                 AppSizedBox.height8,
-                SpashSloganWidget(),
+                const SpashSloganWidget(),
               ],
             ),
           ),
-          SpashLoadingWidget(),
+          const SpashLoadingWidget(),
         ],
       ),
     );

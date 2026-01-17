@@ -1,13 +1,15 @@
-  import 'package:flutter/material.dart';
+import 'package:announce_app/app/constant/string_constant.dart';
+import 'package:announce_app/app/constant/text_constant.dart';
+import 'package:flutter/material.dart';
 
-Text SplashTitleWidget(Color primaryTextColor) {
+class SplashTitleWidget extends StatelessWidget {
+  const SplashTitleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Text(
-                "ACCOUNCE",
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 4,
-                  color: primaryTextColor,
-                ),
-              );
+      appStrings.splash['appName']!,
+      style: AppTextStyles.splashTitle(context),
+    );
   }
+}

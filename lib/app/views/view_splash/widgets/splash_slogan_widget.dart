@@ -1,4 +1,5 @@
-import 'package:announce_app/app/constant/color_constant.dart';
+import 'package:announce_app/app/constant/string_constant.dart';
+import 'package:announce_app/app/constant/text_constant.dart';
 import 'package:flutter/material.dart';
 
 class SpashSloganWidget extends StatelessWidget {
@@ -7,11 +8,8 @@ class SpashSloganWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Fast and Easy Announcement Management",
-      style: TextStyle(
-        fontSize: 14,
-        color: AppColors.getTextSecondaryColor(context),
-      ),
+      appStrings.splash['appSlogan']!,
+      style: AppTextStyles.splashSlogan(context),
     );
   }
 }
