@@ -9,6 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  slang: ^4.12.1
+  slang_flutter: ^4.12.1
   masterfabric_core: ^0.0.13
   osmea_components:
     git:
@@ -16,6 +20,7 @@ dependencies:
       ref: dev
       path: packages/components
   cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
