@@ -1,7 +1,7 @@
 import 'package:announce_app/app/constant/spacing_constant.dart';
-import 'package:announce_app/app/constant/string_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
 import 'package:announce_app/app/widgets/circular_widget.dart';
+import 'package:announce_app/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 
 class SpashLoadingWidget extends StatelessWidget {
@@ -18,7 +18,7 @@ class SpashLoadingWidget extends StatelessWidget {
           const SizedBox(width: 40, height: 40, child: CircularWidget()),
           AppSizedBox.height16,
           Text(
-            appStrings.splash['loading']!,
+            context.t.splash.loading,
             style: AppTextStyles.loading(context),
           ),
         ],

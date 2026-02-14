@@ -1,5 +1,5 @@
-import 'package:announce_app/app/constant/string_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
+import 'package:announce_app/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 
 class SpashSloganWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ class SpashSloganWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      appStrings.splash['appSlogan']!,
+      context.t.splash.appSlogan,
       style: AppTextStyles.splashSlogan(context),
     );
   }

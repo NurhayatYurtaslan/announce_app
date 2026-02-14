@@ -1,5 +1,5 @@
-import 'package:announce_app/app/constant/string_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
+import 'package:announce_app/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 
 class SplashTitleWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ class SplashTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      appStrings.splash['appName']!,
+      context.t.splash.appName,
       style: AppTextStyles.splashTitle(context),
     );
   }

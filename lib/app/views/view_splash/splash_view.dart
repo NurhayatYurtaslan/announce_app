@@ -1,5 +1,8 @@
 import 'package:announce_app/app/constant/color_constant.dart';
+import 'package:announce_app/app/constant/content_constant/splash_constant.dart';
 import 'package:announce_app/app/constant/spacing_constant.dart';
+import 'package:announce_app/app/core/helper/onboarding_helper.dart';
+import 'package:announce_app/app/views/view_main/main_shell_view.dart';
 import 'package:announce_app/app/views/view_onboarding/onboarding_view.dart';
 import 'package:announce_app/app/views/view_splash/widgets/spash_logo_widget.dart';
 import 'package:announce_app/app/views/view_splash/widgets/spash_title_widget.dart';
@@ -18,15 +21,21 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    // App launch simulation (redirects to onboarding page after 2.5 seconds)
-    Future.delayed(const Duration(milliseconds: 2500), () {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const OnboardingView()),
-        );
-      }
-    });
+    _navigateAfterSplash();
+  }
+
+  Future<void> _navigateAfterSplash() async {
+    await Future.delayed(SplashConstant.delay);
+    if (!mounted) return;
+    final completed = await OnboardingHelper.instance.hasSeenOnboarding();
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            completed ? const MainShellView() : const OnboardingView(),
+      ),
+    );
   }
 
   @override
