@@ -127,6 +127,9 @@ class _TranslationsHomeDe extends TranslationsHomeEn {
 	@override String get pullToRefresh => 'Zum Aktualisieren nach unten ziehen';
 	@override String get filterAll => 'Alle';
 	@override String get pinLimitReached => 'Sie können höchstens 3 Ankündigungen anheften. Heften Sie eine ab, um eine andere anzuheften.';
+	@override String get searchTitle => 'Ankündigungen suchen';
+	@override String get searchHint => 'Nach Titel oder Inhalt suchen...';
+	@override String get searchEmpty => 'Keine Ankündigungen entsprechen Ihrer Suche.';
 	@override String get mock1Title => 'Jährliche Wartung';
 	@override String get mock1Content => 'Die Systemwartung findet am 15.-16. Februar statt. Unsere Dienste können in dieser Zeit kurz unterbrochen werden.';
 	@override String get mock1Date => '14. Feb 2025, 09:00';
@@ -313,6 +316,9 @@ extension on TranslationsDe {
 			'home.pullToRefresh' => 'Zum Aktualisieren nach unten ziehen',
 			'home.filterAll' => 'Alle',
 			'home.pinLimitReached' => 'Sie können höchstens 3 Ankündigungen anheften. Heften Sie eine ab, um eine andere anzuheften.',
+			'home.searchTitle' => 'Ankündigungen suchen',
+			'home.searchHint' => 'Nach Titel oder Inhalt suchen...',
+			'home.searchEmpty' => 'Keine Ankündigungen entsprechen Ihrer Suche.',
 			'home.mock1Title' => 'Jährliche Wartung',
 			'home.mock1Content' => 'Die Systemwartung findet am 15.-16. Februar statt. Unsere Dienste können in dieser Zeit kurz unterbrochen werden.',
 			'home.mock1Date' => '14. Feb 2025, 09:00',

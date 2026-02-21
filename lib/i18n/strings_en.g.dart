@@ -197,6 +197,15 @@ class TranslationsHomeEn {
 	/// en: 'You can pin at most 3 announcements. Unpin one to pin another.'
 	String get pinLimitReached => 'You can pin at most 3 announcements. Unpin one to pin another.';
 
+	/// en: 'Search announcements'
+	String get searchTitle => 'Search announcements';
+
+	/// en: 'Search by title or content...'
+	String get searchHint => 'Search by title or content...';
+
+	/// en: 'No announcements match your search.'
+	String get searchEmpty => 'No announcements match your search.';
+
 	/// en: 'Annual Maintenance'
 	String get mock1Title => 'Annual Maintenance';
 
@@ -554,6 +563,9 @@ extension on Translations {
 			'home.pullToRefresh' => 'Pull down to refresh',
 			'home.filterAll' => 'All',
 			'home.pinLimitReached' => 'You can pin at most 3 announcements. Unpin one to pin another.',
+			'home.searchTitle' => 'Search announcements',
+			'home.searchHint' => 'Search by title or content...',
+			'home.searchEmpty' => 'No announcements match your search.',
 			'home.mock1Title' => 'Annual Maintenance',
 			'home.mock1Content' => 'System maintenance will take place on 15-16 February. Services may be briefly interrupted during this period.',
 			'home.mock1Date' => '14 Feb 2025, 09:00',

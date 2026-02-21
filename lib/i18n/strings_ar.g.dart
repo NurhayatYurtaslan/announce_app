@@ -127,6 +127,9 @@ class _TranslationsHomeAr extends TranslationsHomeEn {
 	@override String get pullToRefresh => 'اسحب للأسفل للتحديث';
 	@override String get filterAll => 'الكل';
 	@override String get pinLimitReached => 'يمكنك تثبيت 3 إعلانات كحد أقصى. أزل تثبيت واحد لتثبيت آخر.';
+	@override String get searchTitle => 'البحث في الإعلانات';
+	@override String get searchHint => 'البحث بالعنوان أو المحتوى...';
+	@override String get searchEmpty => 'لا توجد إعلانات تطابق بحثك.';
 	@override String get mock1Title => 'الصيانة السنوية';
 	@override String get mock1Content => 'ستتم صيانة النظام في 15-16 فبراير. قد تتوقف خدماتنا لفترة قصيرة خلال هذه الفترة.';
 	@override String get mock1Date => '14 فبراير 2025، 09:00';
@@ -313,6 +316,9 @@ extension on TranslationsAr {
 			'home.pullToRefresh' => 'اسحب للأسفل للتحديث',
 			'home.filterAll' => 'الكل',
 			'home.pinLimitReached' => 'يمكنك تثبيت 3 إعلانات كحد أقصى. أزل تثبيت واحد لتثبيت آخر.',
+			'home.searchTitle' => 'البحث في الإعلانات',
+			'home.searchHint' => 'البحث بالعنوان أو المحتوى...',
+			'home.searchEmpty' => 'لا توجد إعلانات تطابق بحثك.',
 			'home.mock1Title' => 'الصيانة السنوية',
 			'home.mock1Content' => 'ستتم صيانة النظام في 15-16 فبراير. قد تتوقف خدماتنا لفترة قصيرة خلال هذه الفترة.',
 			'home.mock1Date' => '14 فبراير 2025، 09:00',

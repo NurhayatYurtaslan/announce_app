@@ -4,6 +4,7 @@ import 'package:announce_app/app/constant/spacing_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
 import 'package:announce_app/app/models/announcement_item.dart';
 import 'package:announce_app/app/views/view_announcement_detail/announcement_detail_view.dart';
+import 'package:announce_app/app/views/view_search/search_view.dart';
 import 'package:announce_app/app/constant/content_constant/home_mock_constant.dart';
 import 'package:announce_app/app/views/view_home/widgets/announcement_card_widget.dart';
 import 'package:announce_app/app/views/view_home/widgets/home_filter_chip_widget.dart';
@@ -76,14 +77,24 @@ class _HomeViewState extends State<HomeView> {
     if (_categoryFilter != null && _categoryFilter!.isNotEmpty && _categoryFilter != 'all') {
       list = list.where((a) => a.category == _categoryFilter).toList();
     }
-    // Pinned first, then by random display order (same order until refresh)
+    _sortByPinnedAndOrder(list);
+    return list;
+  }
+
+  /// All announcements (no category filter), sorted for search view.
+  List<AnnouncementItem> _allAnnouncementsSorted(Translations t) {
+    final list = _buildAnnouncements(t);
+    _sortByPinnedAndOrder(list);
+    return list;
+  }
+
+  void _sortByPinnedAndOrder(List<AnnouncementItem> list) {
     list.sort((a, b) {
       if (a.isPinned != b.isPinned) return a.isPinned ? -1 : 1;
       final indexA = _displayOrder.indexOf(a.id);
       final indexB = _displayOrder.indexOf(b.id);
       return indexA.compareTo(indexB);
     });
-    return list;
   }
 
   static const int _maxPinnedCount = 3;
@@ -163,6 +174,20 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search_rounded),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (context) => SearchView(
+                    announcements: _allAnnouncementsSorted(t),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
