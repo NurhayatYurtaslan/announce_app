@@ -41,6 +41,7 @@
     "empty": "No announcements yet",
     "pullToRefresh": "Pull down to refresh",
     "filterAll": "All",
+    "pinLimitReached": "You can pin at most 3 announcements. Unpin one to pin another.",
     "mock1Title": "Annual Maintenance",
     "mock1Content": "System maintenance will take place on 15-16 February. Services may be briefly interrupted during this period.",
     "mock1Date": "14 Feb 2025, 09:00",

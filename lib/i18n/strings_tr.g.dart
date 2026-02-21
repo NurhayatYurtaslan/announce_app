@@ -126,6 +126,7 @@ class _TranslationsHomeTr extends TranslationsHomeEn {
 	@override String get empty => 'Henüz duyuru yok';
 	@override String get pullToRefresh => 'Yenilemek için aşağı çekin';
 	@override String get filterAll => 'Tümü';
+	@override String get pinLimitReached => 'En fazla 3 duyuru sabitleyebilirsiniz. Yeni sabitlemek için birinin sabitini kaldırın.';
 	@override String get mock1Title => 'Yıllık Bakım Çalışması';
 	@override String get mock1Content => '15-16 Şubat tarihlerinde sistem bakımı yapılacaktır. Bu süre zarfında hizmetlerimiz kısa süreli kesintiye uğrayabilir.';
 	@override String get mock1Date => '14 Şub 2025, 09:00';
@@ -311,6 +312,7 @@ extension on TranslationsTr {
 			'home.empty' => 'Henüz duyuru yok',
 			'home.pullToRefresh' => 'Yenilemek için aşağı çekin',
 			'home.filterAll' => 'Tümü',
+			'home.pinLimitReached' => 'En fazla 3 duyuru sabitleyebilirsiniz. Yeni sabitlemek için birinin sabitini kaldırın.',
 			'home.mock1Title' => 'Yıllık Bakım Çalışması',
 			'home.mock1Content' => '15-16 Şubat tarihlerinde sistem bakımı yapılacaktır. Bu süre zarfında hizmetlerimiz kısa süreli kesintiye uğrayabilir.',
 			'home.mock1Date' => '14 Şub 2025, 09:00',
