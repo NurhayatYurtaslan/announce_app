@@ -2,11 +2,26 @@ import 'package:announce_app/app/constant/content_constant/announcement_constant
 import 'package:announce_app/app/constant/color_constant.dart';
 import 'package:announce_app/app/constant/spacing_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
+import 'package:announce_app/app/core/settings/app_settings.dart';
 import 'package:announce_app/app/models/announcement_item.dart';
 import 'package:announce_app/app/views/view_announcement_detail/announcement_detail_view.dart';
 import 'package:announce_app/app/views/view_home/widgets/announcement_card_widget.dart';
 import 'package:announce_app/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
+
+/// Returns a Locale with country code for IME/keyboard hint (better support on Android).
+Locale _keyboardLocaleFor(AppLocale appLocale) {
+  switch (appLocale) {
+    case AppLocale.en:
+      return const Locale('en', 'US');
+    case AppLocale.tr:
+      return const Locale('tr', 'TR');
+    case AppLocale.de:
+      return const Locale('de', 'DE');
+    case AppLocale.ar:
+      return const Locale('ar', 'SA');
+  }
+}
 
 /// Full-screen search view: search field and list of announcements matching the query.
 /// Only shows items where [AnnouncementItem.title] or [AnnouncementItem.content] contains the query.
@@ -56,6 +71,8 @@ class _SearchViewState extends State<SearchView> {
     final bgColor = AppColors.getBackgroundColor(context);
     final cardColor = AppColors.getCardColor(context);
     final borderColor = AppColors.getBorderColor(context);
+    final appLocale = AppSettingsScope.of(context).locale;
+    final keyboardLocale = _keyboardLocaleFor(appLocale);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -72,20 +89,23 @@ class _SearchViewState extends State<SearchView> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppSpacing.width16,
-              vertical: AppSpacing.height8,
-            ),
-            child: TextField(
-              controller: _controller,
-              focusNode: _focusNode,
-              onChanged: (_) => setState(() {}),
-              hintLocales: [Localizations.localeOf(context)],
-              decoration: InputDecoration(
+      body: Localizations.override(
+        context: context,
+        locale: keyboardLocale,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppSpacing.width16,
+                vertical: AppSpacing.height8,
+              ),
+              child: TextField(
+                controller: _controller,
+                focusNode: _focusNode,
+                onChanged: (_) => setState(() {}),
+                hintLocales: [keyboardLocale],
+                decoration: InputDecoration(
                 hintText: t.home.searchHint,
                 prefixIcon: const Icon(Icons.search_rounded),
                 // border: OutlineInputBorder(
@@ -141,6 +161,7 @@ class _SearchViewState extends State<SearchView> {
                       ),
           ),
         ],
+        ),
       ),
     );
   }
