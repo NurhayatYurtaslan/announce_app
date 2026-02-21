@@ -13,6 +13,7 @@ class AnnouncementCardWidget extends StatelessWidget {
     required this.categoryColor,
     required this.categoryLabel,
     required this.onTap,
+    this.onPinTap,
   });
 
   final AnnouncementItem item;
@@ -21,6 +22,8 @@ class AnnouncementCardWidget extends StatelessWidget {
   final Color categoryColor;
   final String categoryLabel;
   final VoidCallback onTap;
+  /// When set, shows a pin button to pin/unpin this announcement.
+  final VoidCallback? onPinTap;
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +93,26 @@ class AnnouncementCardWidget extends StatelessWidget {
                                 Icons.push_pin_rounded,
                                 size: 14,
                                 color: AppColors.announcementPinned,
+                              ),
+                            ],
+                            if (onPinTap != null) ...[
+                              const Spacer(),
+                              IconButton(
+                                onPressed: onPinTap,
+                                icon: Icon(
+                                  item.isPinned
+                                      ? Icons.push_pin_rounded
+                                      : Icons.push_pin_outlined,
+                                  size: 20,
+                                  color: item.isPinned
+                                      ? AppColors.announcementPinned
+                                      : AppColors.getIconColor(context),
+                                ),
+                                style: IconButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: const Size(36, 36),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                ),
                               ),
                             ],
                           ],

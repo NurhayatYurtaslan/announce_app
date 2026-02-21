@@ -7,8 +7,12 @@ import 'package:announce_app/app/views/view_announcement_detail/announcement_det
 import 'package:announce_app/app/constant/content_constant/home_mock_constant.dart';
 import 'package:announce_app/app/views/view_home/widgets/announcement_card_widget.dart';
 import 'package:announce_app/app/views/view_home/widgets/home_filter_chip_widget.dart';
+import 'package:announce_app/app/views/view_home/widgets/home_page_skeleton_widget.dart';
 import 'package:announce_app/i18n/strings.g.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,8 +23,12 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   late List<HomeMockAnnouncementStructure> _mockStructure;
+  /// Random display order (list of ids). Shuffled on init and on refresh.
+  late List<String> _displayOrder;
   /// null or 'all' = show all; 'urgent' | 'important' | 'info' | 'normal' = filter by category
   String? _categoryFilter;
+  /// When true, show skeleton shimmer instead of announcement list.
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -39,6 +47,14 @@ class _HomeViewState extends State<HomeView> {
       HomeMockAnnouncementStructure(id: '11', category: 'info', isPinned: true, isUnread: false),
       HomeMockAnnouncementStructure(id: '12', category: 'important', isPinned: false, isUnread: true),
     ];
+    _displayOrder = _mockStructure.map((s) => s.id).toList();
+    _displayOrder.shuffle(Random());
+    _loadAnnouncements();
+  }
+
+  Future<void> _loadAnnouncements() async {
+    await Future.delayed(const Duration(milliseconds: 3000));
+    if (mounted) setState(() => _isLoading = false);
   }
 
   List<AnnouncementItem> _buildAnnouncements(Translations t) {
@@ -60,12 +76,36 @@ class _HomeViewState extends State<HomeView> {
     if (_categoryFilter != null && _categoryFilter!.isNotEmpty && _categoryFilter != 'all') {
       list = list.where((a) => a.category == _categoryFilter).toList();
     }
+    // Pinned first, then by random display order (same order until refresh)
     list.sort((a, b) {
       if (a.isPinned != b.isPinned) return a.isPinned ? -1 : 1;
-      if (a.isUnread != b.isUnread) return a.isUnread ? -1 : 1;
-      return 0;
+      final indexA = _displayOrder.indexOf(a.id);
+      final indexB = _displayOrder.indexOf(b.id);
+      return indexA.compareTo(indexB);
     });
     return list;
+  }
+
+  static const int _maxPinnedCount = 3;
+
+  void _togglePin(String id) {
+    final structure = _mockStructure.firstWhere((s) => s.id == id);
+    if (!structure.isPinned) {
+      final pinnedCount = _mockStructure.where((s) => s.isPinned).length;
+      if (pinnedCount >= _maxPinnedCount) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: AppColors.error,
+            content: Text(context.t.home.pinLimitReached),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+        return;
+      }
+    }
+    setState(() {
+      structure.isPinned = !structure.isPinned;
+    });
   }
 
   void _openDetail(AnnouncementItem item) {
@@ -87,10 +127,29 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.t;
     final bgColor = AppColors.getBackgroundColor(context);
     final cardColor = AppColors.getCardColor(context);
     final borderColor = AppColors.getBorderColor(context);
+
+    // When loading, show full-page skeleton and do not use translations for list (avoids errors).
+    if (_isLoading) {
+      return Scaffold(
+        backgroundColor: bgColor,
+        appBar: AppBar(
+          title: const _AppBarSkeleton(),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+        ),
+        body: HomePageSkeletonWidget(
+          bgColor: bgColor,
+          cardColor: cardColor,
+          borderColor: borderColor,
+        ),
+      );
+    }
+
+    final t = context.t;
     final list = _filteredAndSortedAnnouncements(t);
     final isFilterAll = _categoryFilter == null || _categoryFilter == 'all';
 
@@ -157,7 +216,14 @@ class _HomeViewState extends State<HomeView> {
                   )
                 : RefreshIndicator(
                     onRefresh: () async {
-                      await Future.delayed(const Duration(milliseconds: 800));
+                      setState(() => _isLoading = true);
+                      await Future.delayed(const Duration(milliseconds: 600));
+                      if (mounted) {
+                        setState(() {
+                          _displayOrder.shuffle(Random());
+                          _isLoading = false;
+                        });
+                      }
                     },
                     child: ListView.builder(
                       padding: EdgeInsets.fromLTRB(
@@ -173,15 +239,43 @@ class _HomeViewState extends State<HomeView> {
                           item: item,
                           cardColor: cardColor,
                           borderColor: borderColor,
-categoryColor: AnnouncementCategory.color(item.category),
-                    categoryLabel: AnnouncementCategory.label(context, item.category),
+                          categoryColor: AnnouncementCategory.color(item.category),
+                          categoryLabel: AnnouncementCategory.label(context, item.category),
                           onTap: () => _openDetail(item),
+                          onPinTap: () => _togglePin(item.id),
                         );
                       },
                     ),
                   ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// App bar skeleton with shimmer: title placeholder (matches Material AppBar title).
+class _AppBarSkeleton extends StatelessWidget {
+  const _AppBarSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final baseColor = isDark ? AppColors.surfaceVariantDark : AppColors.surfaceVariantLight;
+    final highlightColor = isDark ? AppColors.surfaceDark : AppColors.containerLight;
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Shimmer.fromColors(
+        baseColor: baseColor,
+        highlightColor: highlightColor,
+        child: Container(
+          width: 180,
+          height: 28,
+          decoration: BoxDecoration(
+            color: baseColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
       ),
     );
   }
