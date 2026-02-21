@@ -104,9 +104,15 @@
   },
   "settings": {
     "theme": {
+      "brightness": "السطوع",
+      "colorStyle": "لون السمة",
       "light": "فاتح",
       "dark": "داكن",
-      "system": "النظام"
+      "system": "النظام",
+      "default": "افتراضي (برتقالي)",
+      "ocean": "المحيط (أزرق)",
+      "forest": "الغابة (أخضر)",
+      "sunset": "غروب (بنفسجي)"
     },
     "language": {
       "en": "English",

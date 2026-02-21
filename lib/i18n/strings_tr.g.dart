@@ -256,9 +256,15 @@ class _TranslationsSettingsThemeTr extends TranslationsSettingsThemeEn {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
+	@override String get brightness => 'Parlaklık';
+	@override String get colorStyle => 'Renk teması';
 	@override String get light => 'Açık';
 	@override String get dark => 'Koyu';
 	@override String get system => 'Sistem';
+	@override String get kDefault => 'Varsayılan (Turuncu)';
+	@override String get ocean => 'Okyanus (Mavi)';
+	@override String get forest => 'Orman (Yeşil)';
+	@override String get sunset => 'Gün Batımı (Mor)';
 }
 
 // Path: settings.language
@@ -373,9 +379,15 @@ extension on TranslationsTr {
 			'profile.sampleDepartment' => 'İnsan Kaynakları',
 			'profile.sampleMemberSince' => 'Ocak 2024',
 			'profile.sampleInitials' => 'AY',
+			'settings.theme.brightness' => 'Parlaklık',
+			'settings.theme.colorStyle' => 'Renk teması',
 			'settings.theme.light' => 'Açık',
 			'settings.theme.dark' => 'Koyu',
 			'settings.theme.system' => 'Sistem',
+			'settings.theme.kDefault' => 'Varsayılan (Turuncu)',
+			'settings.theme.ocean' => 'Okyanus (Mavi)',
+			'settings.theme.forest' => 'Orman (Yeşil)',
+			'settings.theme.sunset' => 'Gün Batımı (Mor)',
 			'settings.language.en' => 'English',
 			'settings.language.de' => 'Deutsch',
 			'settings.language.tr' => 'Türkçe',

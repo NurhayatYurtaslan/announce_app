@@ -256,9 +256,15 @@ class _TranslationsSettingsThemeDe extends TranslationsSettingsThemeEn {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
+	@override String get brightness => 'Helligkeit';
+	@override String get colorStyle => 'Farbdesign';
 	@override String get light => 'Hell';
 	@override String get dark => 'Dunkel';
 	@override String get system => 'System';
+	@override String get kDefault => 'Standard (Orange)';
+	@override String get ocean => 'Ozean (Blau)';
+	@override String get forest => 'Wald (Grün)';
+	@override String get sunset => 'Sonnenuntergang (Lila)';
 }
 
 // Path: settings.language
@@ -373,9 +379,15 @@ extension on TranslationsDe {
 			'profile.sampleDepartment' => 'Personalwesen',
 			'profile.sampleMemberSince' => 'Januar 2024',
 			'profile.sampleInitials' => 'AS',
+			'settings.theme.brightness' => 'Helligkeit',
+			'settings.theme.colorStyle' => 'Farbdesign',
 			'settings.theme.light' => 'Hell',
 			'settings.theme.dark' => 'Dunkel',
 			'settings.theme.system' => 'System',
+			'settings.theme.kDefault' => 'Standard (Orange)',
+			'settings.theme.ocean' => 'Ozean (Blau)',
+			'settings.theme.forest' => 'Wald (Grün)',
+			'settings.theme.sunset' => 'Sonnenuntergang (Lila)',
 			'settings.language.en' => 'English',
 			'settings.language.de' => 'Deutsch',
 			'settings.language.tr' => 'Türkçe',

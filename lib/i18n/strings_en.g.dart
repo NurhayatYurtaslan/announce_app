@@ -490,6 +490,12 @@ class TranslationsSettingsThemeEn {
 
 	// Translations
 
+	/// en: 'Brightness'
+	String get brightness => 'Brightness';
+
+	/// en: 'Color theme'
+	String get colorStyle => 'Color theme';
+
 	/// en: 'Light'
 	String get light => 'Light';
 
@@ -498,6 +504,18 @@ class TranslationsSettingsThemeEn {
 
 	/// en: 'System'
 	String get system => 'System';
+
+	/// en: 'Default (Orange)'
+	String get kDefault => 'Default (Orange)';
+
+	/// en: 'Ocean (Blue)'
+	String get ocean => 'Ocean (Blue)';
+
+	/// en: 'Forest (Green)'
+	String get forest => 'Forest (Green)';
+
+	/// en: 'Sunset (Purple)'
+	String get sunset => 'Sunset (Purple)';
 }
 
 // Path: settings.language
@@ -620,9 +638,15 @@ extension on Translations {
 			'profile.sampleDepartment' => 'Human Resources',
 			'profile.sampleMemberSince' => 'January 2024',
 			'profile.sampleInitials' => 'JD',
+			'settings.theme.brightness' => 'Brightness',
+			'settings.theme.colorStyle' => 'Color theme',
 			'settings.theme.light' => 'Light',
 			'settings.theme.dark' => 'Dark',
 			'settings.theme.system' => 'System',
+			'settings.theme.kDefault' => 'Default (Orange)',
+			'settings.theme.ocean' => 'Ocean (Blue)',
+			'settings.theme.forest' => 'Forest (Green)',
+			'settings.theme.sunset' => 'Sunset (Purple)',
 			'settings.language.en' => 'English',
 			'settings.language.de' => 'Deutsch',
 			'settings.language.tr' => 'Türkçe',

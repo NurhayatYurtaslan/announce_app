@@ -104,9 +104,15 @@
   },
   "settings": {
     "theme": {
+      "brightness": "Brightness",
+      "colorStyle": "Color theme",
       "light": "Light",
       "dark": "Dark",
-      "system": "System"
+      "system": "System",
+      "default": "Default (Orange)",
+      "ocean": "Ocean (Blue)",
+      "forest": "Forest (Green)",
+      "sunset": "Sunset (Purple)"
     },
     "language": {
       "en": "English",

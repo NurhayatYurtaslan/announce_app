@@ -104,9 +104,15 @@
   },
   "settings": {
     "theme": {
+      "brightness": "Helligkeit",
+      "colorStyle": "Farbdesign",
       "light": "Hell",
       "dark": "Dunkel",
-      "system": "System"
+      "system": "System",
+      "default": "Standard (Orange)",
+      "ocean": "Ozean (Blau)",
+      "forest": "Wald (Grün)",
+      "sunset": "Sonnenuntergang (Lila)"
     },
     "language": {
       "en": "English",

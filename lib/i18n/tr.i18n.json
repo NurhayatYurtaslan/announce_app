@@ -104,9 +104,15 @@
   },
   "settings": {
     "theme": {
+      "brightness": "Parlaklık",
+      "colorStyle": "Renk teması",
       "light": "Açık",
       "dark": "Koyu",
-      "system": "Sistem"
+      "system": "Sistem",
+      "default": "Varsayılan (Turuncu)",
+      "ocean": "Okyanus (Mavi)",
+      "forest": "Orman (Yeşil)",
+      "sunset": "Gün Batımı (Mor)"
     },
     "language": {
       "en": "English",

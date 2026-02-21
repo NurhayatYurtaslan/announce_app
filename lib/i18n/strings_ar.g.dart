@@ -256,9 +256,15 @@ class _TranslationsSettingsThemeAr extends TranslationsSettingsThemeEn {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
+	@override String get brightness => 'السطوع';
+	@override String get colorStyle => 'لون السمة';
 	@override String get light => 'فاتح';
 	@override String get dark => 'داكن';
 	@override String get system => 'النظام';
+	@override String get kDefault => 'افتراضي (برتقالي)';
+	@override String get ocean => 'المحيط (أزرق)';
+	@override String get forest => 'الغابة (أخضر)';
+	@override String get sunset => 'غروب (بنفسجي)';
 }
 
 // Path: settings.language
@@ -373,9 +379,15 @@ extension on TranslationsAr {
 			'profile.sampleDepartment' => 'الموارد البشرية',
 			'profile.sampleMemberSince' => 'يناير 2024',
 			'profile.sampleInitials' => 'أم',
+			'settings.theme.brightness' => 'السطوع',
+			'settings.theme.colorStyle' => 'لون السمة',
 			'settings.theme.light' => 'فاتح',
 			'settings.theme.dark' => 'داكن',
 			'settings.theme.system' => 'النظام',
+			'settings.theme.kDefault' => 'افتراضي (برتقالي)',
+			'settings.theme.ocean' => 'المحيط (أزرق)',
+			'settings.theme.forest' => 'الغابة (أخضر)',
+			'settings.theme.sunset' => 'غروب (بنفسجي)',
 			'settings.language.en' => 'English',
 			'settings.language.de' => 'Deutsch',
 			'settings.language.tr' => 'Türkçe',
