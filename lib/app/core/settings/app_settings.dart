@@ -22,8 +22,9 @@ class AppSettings extends ChangeNotifier {
     final localeCode = await AppPreferences.getLocale();
     if (localeCode != null && localeCode.isNotEmpty) {
       _locale = AppLocaleUtils.parse(localeCode);
-      await LocaleSettings.setLocale(_locale, listenToDeviceLocale: false);
     }
+    // Always sync Slang so bottom bar and all views use the correct locale.
+    await LocaleSettings.setLocale(_locale, listenToDeviceLocale: false);
 
     notifyListeners();
   }
