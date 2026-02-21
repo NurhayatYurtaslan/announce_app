@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Key for storing onboarding completed state
 const String _keyOnboardingCompleted = 'onboarding_completed';
 const String _keyThemeMode = 'theme_mode';
+const String _keyColorTheme = 'color_theme';
 const String _keyLocale = 'locale';
 
 /// Theme mode values stored in preferences
@@ -42,6 +43,24 @@ class AppPreferences {
   static Future<String> getThemeMode() async {
     await init();
     return _prefs!.getString(_keyThemeMode) ?? themeModeSystem;
+  }
+
+  /// Color theme values: default, ocean, forest, sunset
+  static const String colorThemeDefault = 'default';
+  static const String colorThemeOcean = 'ocean';
+  static const String colorThemeForest = 'forest';
+  static const String colorThemeSunset = 'sunset';
+
+  /// Save color theme key
+  static Future<bool> setColorTheme(String value) async {
+    await init();
+    return _prefs!.setString(_keyColorTheme, value);
+  }
+
+  /// Get saved color theme; defaults to [colorThemeDefault]
+  static Future<String> getColorTheme() async {
+    await init();
+    return _prefs!.getString(_keyColorTheme) ?? colorThemeDefault;
   }
 
   /// Save locale code: en, de, tr, ar

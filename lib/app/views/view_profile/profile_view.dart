@@ -1,5 +1,6 @@
 import 'package:announce_app/app/constant/color_constant.dart';
 import 'package:announce_app/app/constant/spacing_constant.dart';
+import 'package:announce_app/app/constant/theme_constant.dart';
 import 'package:announce_app/app/constant/text_constant.dart';
 import 'package:announce_app/app/core/settings/app_settings.dart';
 import 'package:announce_app/app/views/view_profile/widgets/profile_about_bullet_widget.dart';
@@ -19,6 +20,7 @@ class ProfileView extends StatelessWidget {
     final t = context.t;
     final appSettings = AppSettingsScope.of(context);
     final themeMode = appSettings.themeMode;
+    final colorTheme = appSettings.colorTheme;
 
     showModalBottomSheet<void>(
       context: context,
@@ -27,7 +29,7 @@ class ProfileView extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (ctx) => SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: AppSpacing.padding24,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -39,7 +41,14 @@ class ProfileView extends StatelessWidget {
                   color: AppColors.getTextPrimaryColor(ctx),
                 ),
               ),
-              AppSizedBox.height16,
+              AppSizedBox.height8,
+              Text(
+                t['settings.theme.brightness'] as String,
+                style: AppTextStyles.labelMedium(ctx).copyWith(
+                  color: AppColors.getTextSecondaryColor(ctx),
+                ),
+              ),
+              AppSizedBox.height8,
               ProfileOptionTileWidget(
                 label: t.settings.theme.light,
                 icon: Icons.light_mode_rounded,
@@ -64,6 +73,50 @@ class ProfileView extends StatelessWidget {
                 selected: themeMode == ThemeMode.system,
                 onTap: () {
                   appSettings.setThemeMode(ThemeMode.system);
+                  Navigator.pop(ctx);
+                },
+              ),
+              AppSizedBox.height24,
+              Text(
+                t['settings.theme.colorStyle'] as String,
+                style: AppTextStyles.labelMedium(ctx).copyWith(
+                  color: AppColors.getTextSecondaryColor(ctx),
+                ),
+              ),
+              AppSizedBox.height8,
+              ProfileOptionTileWidget(
+                label: t.settings.theme.kDefault,
+                icon: Icons.palette_rounded,
+                selected: colorTheme == AppColorTheme.defaultTheme,
+                onTap: () {
+                  appSettings.setColorTheme(AppColorTheme.defaultTheme);
+                  Navigator.pop(ctx);
+                },
+              ),
+              ProfileOptionTileWidget(
+                label: t.settings.theme.ocean,
+                icon: Icons.palette_rounded,
+                selected: colorTheme == AppColorTheme.ocean,
+                onTap: () {
+                  appSettings.setColorTheme(AppColorTheme.ocean);
+                  Navigator.pop(ctx);
+                },
+              ),
+              ProfileOptionTileWidget(
+                label: t.settings.theme.forest,
+                icon: Icons.palette_rounded,
+                selected: colorTheme == AppColorTheme.forest,
+                onTap: () {
+                  appSettings.setColorTheme(AppColorTheme.forest);
+                  Navigator.pop(ctx);
+                },
+              ),
+              ProfileOptionTileWidget(
+                label: t.settings.theme.sunset,
+                icon: Icons.palette_rounded,
+                selected: colorTheme == AppColorTheme.sunset,
+                onTap: () {
+                  appSettings.setColorTheme(AppColorTheme.sunset);
                   Navigator.pop(ctx);
                 },
               ),

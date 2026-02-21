@@ -1,4 +1,4 @@
-import 'package:announce_app/app/constant/color_constant.dart';
+import 'package:announce_app/app/constant/theme_constant.dart';
 import 'package:announce_app/app/core/preferences/app_preferences.dart';
 import 'package:announce_app/app/core/settings/app_settings.dart';
 import 'package:announce_app/app/views/view_splash/splash_view.dart';
@@ -34,11 +34,11 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             title: 'ACCOUNCE APP',
             theme: ThemeData(
-              colorScheme: AppColorScheme.light,
+              colorScheme: appSettings.colorTheme.lightScheme(),
               useMaterial3: true,
             ),
             darkTheme: ThemeData(
-              colorScheme: AppColorScheme.dark,
+              colorScheme: appSettings.colorTheme.darkScheme(),
               useMaterial3: true,
             ),
             themeMode: appSettings.themeMode,

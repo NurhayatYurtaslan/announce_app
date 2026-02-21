@@ -1,6 +1,6 @@
 import 'package:announce_app/app/constant/color_constant.dart';
 import 'package:announce_app/app/constant/content_constant/main_shell_constant.dart';
-import 'package:announce_app/i18n/strings.g.dart';
+import 'package:announce_app/app/core/settings/app_settings.dart';
 import 'package:flutter/material.dart';
 
 /// Main shell with bottom navigation: Home and Profile.
@@ -16,7 +16,10 @@ class _MainShellViewState extends State<MainShellView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.t;
+    // Use app locale's translations so nav bar shows correct language after app restart.
+    final appSettings = AppSettingsScope.of(context);
+    final locale = appSettings.locale;
+    final t = locale.translations;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final navBarBg = isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
     final selectedColor = AppColors.secondary;
@@ -26,6 +29,7 @@ class _MainShellViewState extends State<MainShellView> {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
+        key: ValueKey(locale.languageCode),
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         backgroundColor: navBarBg,

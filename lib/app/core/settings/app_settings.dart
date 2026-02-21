@@ -1,3 +1,4 @@
+import 'package:announce_app/app/constant/theme_constant.dart';
 import 'package:announce_app/app/core/preferences/app_preferences.dart';
 import 'package:announce_app/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,11 @@ import 'package:flutter/material.dart';
 /// App-wide theme and locale settings. Notifies listeners so [MaterialApp] can rebuild.
 class AppSettings extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
+  AppColorTheme _colorTheme = AppColorTheme.defaultTheme;
   AppLocale _locale = AppLocale.en;
 
   ThemeMode get themeMode => _themeMode;
+  AppColorTheme get colorTheme => _colorTheme;
   AppLocale get locale => _locale;
 
   /// Load saved theme and locale from preferences. Call once at startup.
@@ -19,11 +22,14 @@ class AppSettings extends ChangeNotifier {
             ? ThemeMode.light
             : ThemeMode.system;
 
+    final colorThemeKey = await AppPreferences.getColorTheme();
+    _colorTheme = appColorThemeFromString(colorThemeKey);
+
     final localeCode = await AppPreferences.getLocale();
     if (localeCode != null && localeCode.isNotEmpty) {
       _locale = AppLocaleUtils.parse(localeCode);
     }
-    // Always sync Slang so bottom bar and all views use the correct locale.
+    // Load locale and deferred libs (de, tr, ar) before runApp so nav bar has correct translations.
     await LocaleSettings.setLocale(_locale, listenToDeviceLocale: false);
 
     notifyListeners();
@@ -39,6 +45,14 @@ class AppSettings extends ChangeNotifier {
             ? themeModeLight
             : themeModeSystem;
     await AppPreferences.setThemeMode(value);
+    notifyListeners();
+  }
+
+  /// Set color theme (default/ocean/forest/sunset) and persist.
+  Future<void> setColorTheme(AppColorTheme theme) async {
+    if (_colorTheme == theme) return;
+    _colorTheme = theme;
+    await AppPreferences.setColorTheme(appColorThemeToKey(theme));
     notifyListeners();
   }
 
